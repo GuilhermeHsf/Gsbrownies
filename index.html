@@ -1171,6 +1171,7 @@
     </button>
   </nav>
 
+  <script src="config.js"></script>
   <script>
     // ===== PRODUTOS =====
     const PRODUCTS = [
@@ -1696,20 +1697,98 @@
       pixProcessing.classList.add('open');
       btnConfirmOrder.disabled = true;
 
-      // Simula salvamento (será substituído pela integração Sheets no plano 04)
-      setTimeout(() => {
-        pixProcessing.classList.remove('open');
+      // Monta payload
+      const entries = Object.entries(cart);
+      const itensTexto = entries.map(([id, qty]) => {
+        const p = PRODUCTS.find(pr => pr.id === parseInt(id));
+        return `${qty}x ${p.name} — R$ ${(p.price * qty).toFixed(2).replace('.', ',')}`;
+      }).join('\n');
 
-        // Limpa carrinho
-        cart = {};
-        updateCartUI();
-        sessionStorage.removeItem('gsbrownie_cart');
+      const rua = inputRua.value.trim();
+      const num = inputNumero.value.trim();
+      const bairro = inputBairro.value.trim();
+      const endereco = (currentDeliveryMode === 'delivery' && rua && num)
+        ? `${rua}, ${num} - ${bairro}, Suzano-SP`
+        : '';
+      const ref = inputRef.value.trim();
 
-        // Fecha Pix, abre sucesso
-        closePixScreen();
-        openSuccessScreen();
-      }, 1500);
+      const payload = {
+        nome: lastOrderData?.nome || '',
+        whatsapp: lastOrderData?.whats || '',
+        tipoEntrega: currentDeliveryMode,
+        cep: inputCep.value.trim(),
+        endereco: endereco,
+        pontoRef: ref,
+        itens: itensTexto,
+        valorTotal: getTotalPrice().toFixed(2).replace('.', ',')
+      };
+
+      // Se tem URL configurada, chama o Apps Script
+      if (APPS_SCRIPT_URL) {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 10000); // 10s timeout
+
+        fetch(APPS_SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors',   // necessário para Apps Script com acesso anônimo
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+          signal: controller.signal
+        })
+        .then(() => {
+          clearTimeout(timeoutId);
+          // no-cors não permite ler resposta, assumimos sucesso
+          finalizarPedido();
+        })
+        .catch(() => {
+          clearTimeout(timeoutId);
+          falhaEnvio();
+        });
+      } else {
+        // Sem URL configurada: falha controlada com fallback WhatsApp
+        setTimeout(() => falhaEnvio(), 800);
+      }
     });
+
+    function finalizarPedido() {
+      pixProcessing.classList.remove('open');
+
+      // Limpa carrinho
+      cart = {};
+      updateCartUI();
+      sessionStorage.removeItem('gsbrownie_cart');
+
+      // Fecha Pix, abre sucesso
+      closePixScreen();
+      openSuccessScreen();
+    }
+
+    function falhaEnvio() {
+      pixProcessing.classList.remove('open');
+
+      showToast('⏱️ Não foi possível registrar o pedido. Envie manualmente pelo WhatsApp.');
+
+      // Fecha Pix e abre checkout com fallback
+      closePixScreen();
+
+      // Reabre checkout com os dados ainda preenchidos
+      openCheckout();
+
+      // Gera link WhatsApp como fallback
+      const nome = lastOrderData?.nome || 'Cliente';
+      const whats = lastOrderData?.whats || '';
+      const entrega = lastOrderData?.entrega || '—';
+
+      const itensText = Object.entries(cart).map(([id, qty]) => {
+        const p = PRODUCTS.find(pr => pr.id === parseInt(id));
+        return `${qty}x ${p.name}`;
+      }).join(', ');
+
+      const msg = `🍫 *NOVO PEDIDO - GS Brownies*\n\n👤 *Nome:* ${nome}\n📱 *WhatsApp:* ${whats}\n🚚 *Tipo:* ${entrega}\n\n📦 *Itens:* ${itensText}\n💰 *Total:* R$ ${getTotalPrice().toFixed(2).replace('.', ',')}\n\n⚠️ _Pedido NÃO registrado na planilha (timeout). Envio manual._`;
+
+      const url = `https://wa.me/55${whats}?text=${encodeURIComponent(msg)}`;
+      window.open(url, '_blank');
+    }
 
     // ---- Pix back to checkout ----
     btnPixBack.addEventListener('click', function() {
