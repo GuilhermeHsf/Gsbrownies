@@ -1730,17 +1730,15 @@
 
         fetch(APPS_SCRIPT_URL, {
           method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'text/plain' },
           body: JSON.stringify(payload),
           signal: controller.signal
         })
-        .then(res => res.json())
-        .then(data => {
+        .then(() => {
           clearTimeout(timeoutId);
-          if (data.status === 'ok') {
-            finalizarPedido();
-          } else {
-            falhaEnvio();
-          }
+          // no-cors: não dá pra ler resposta, assume sucesso
+          finalizarPedido();
         })
         .catch(() => {
           clearTimeout(timeoutId);
