@@ -1730,15 +1730,17 @@
 
         fetch(APPS_SCRIPT_URL, {
           method: 'POST',
-          mode: 'no-cors',   // necessário para Apps Script com acesso anônimo
-          headers: { 'Content-Type': 'text/plain' },  // no-cors só permite text/plain
           body: JSON.stringify(payload),
           signal: controller.signal
         })
-        .then(() => {
+        .then(res => res.json())
+        .then(data => {
           clearTimeout(timeoutId);
-          // no-cors não permite ler resposta, assumimos sucesso
-          finalizarPedido();
+          if (data.status === 'ok') {
+            finalizarPedido();
+          } else {
+            falhaEnvio();
+          }
         })
         .catch(() => {
           clearTimeout(timeoutId);

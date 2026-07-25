@@ -53,29 +53,46 @@ const SEU_NUMERO = '5511999999999';     // ← Seu WhatsApp com DDD (5511...)
 // ENDPOINT PRINCIPAL — Recebe o POST do site
 // ============================================================
 function doPost(e) {
-  try {
-    // Parse do JSON enviado pelo frontend
-    const data = JSON.parse(e.postData.contents);
-    
-    // Validação básica
-    if (!data.nome || !data.whatsapp) {
-      return errorResponse('Campos obrigatórios: nome, whatsapp');
+  // Resposta CORS para preflight ou resposta normal
+  return handleCors(() => {
+    try {
+      const data = JSON.parse(e.postData.contents);
+
+      if (!data.nome || !data.whatsapp) {
+        return errorResponse('Campos obrigatórios: nome, whatsapp');
+      }
+
+      const resultado = escreverPedido(data);
+
+      // Envia notificação (WhatsApp + e-mail fallback)
+      notificarNovoPedido(data, resultado);
+
+      return ContentService
+        .createTextOutput(JSON.stringify({ status: 'ok', mensagem: 'Pedido registrado!', linha: resultado }))
+        .setMimeType(ContentService.MimeType.JSON);
+    } catch (erro) {
+      return errorResponse('Erro interno: ' + erro.toString());
     }
-    
-    // Grava na planilha
-    const resultado = escreverPedido(data);
-    
-    // Envia notificação (WhatsApp + e-mail fallback)
-    notificarNovoPedido(data, resultado);
-    
-    // Retorna sucesso
+  });
+}
+
+// ============================================================
+// CORS — Permite requisições diretas do frontend
+// ============================================================
+function handleCors(callback) {
+  const saida = callback();
+  saida.setHeader('Access-Control-Allow-Origin', '*');
+  saida.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+  saida.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  return saida;
+}
+
+function doOptions(e) {
+  return handleCors(() => {
     return ContentService
-      .createTextOutput(JSON.stringify({ status: 'ok', mensagem: 'Pedido registrado!', linha: resultado }))
-      .setMimeType(ContentService.MimeType.JSON);
-      
-  } catch (erro) {
-    return errorResponse('Erro interno: ' + erro.toString());
-  }
+      .createTextOutput('')
+      .setMimeType(ContentService.MimeType.TEXT);
+  });
 }
 
 // ============================================================
