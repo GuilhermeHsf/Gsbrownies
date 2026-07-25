@@ -392,6 +392,239 @@
       .menu-grid { grid-template-columns: repeat(3, 1fr); max-width: 720px; margin: 0 auto; }
       .header, .section-title { max-width: 720px; margin-left: auto; margin-right: auto; }
     }
+  /* ===== CHECKOUT SCREEN ===== */
+    .checkout-screen {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      background: #fffaea;
+      overflow-y: auto;
+      padding-bottom: 24px;
+    }
+    .checkout-screen.open { display: block; }
+    .checkout-header {
+      position: sticky;
+      top: 0;
+      background: #fffaea;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-bottom: 1px solid #e4d2bc;
+      z-index: 10;
+    }
+    .checkout-back {
+      background: none;
+      border: none;
+      font-size: 1.3rem;
+      color: #a68164;
+      cursor: pointer;
+      padding: 4px 4px 4px 0;
+    }
+    .checkout-header h2 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #3d2b1c;
+    }
+    .checkout-form {
+      padding: 20px 20px 100px;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+    .form-group {
+      margin-bottom: 18px;
+    }
+    .form-label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #3d2b1c;
+      margin-bottom: 5px;
+    }
+    .form-label .required {
+      color: #c0392b;
+      margin-left: 2px;
+    }
+    .form-input, .form-select {
+      width: 100%;
+      padding: 12px 14px;
+      background: #fff;
+      border: 1.5px solid #e4d2bc;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      color: #3d2b1c;
+      transition: border-color 0.2s;
+      font-family: inherit;
+    }
+    .form-input:focus, .form-select:focus {
+      outline: none;
+      border-color: #a68164;
+      box-shadow: 0 0 0 3px rgba(166,129,100,0.12);
+    }
+    .form-input::placeholder { color: #b8a088; }
+    .form-input.error { border-color: #c0392b; }
+
+    /* Toggle Delivery / Retirada */
+    .delivery-toggle {
+      display: flex;
+      background: #f5ece3;
+      border-radius: 12px;
+      padding: 4px;
+      gap: 4px;
+    }
+    .delivery-option {
+      flex: 1;
+      padding: 10px;
+      text-align: center;
+      border: none;
+      background: transparent;
+      border-radius: 10px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #8a6a4e;
+      cursor: pointer;
+      transition: all 0.2s;
+      touch-action: manipulation;
+    }
+    .delivery-option.active {
+      background: #fff;
+      color: #a68164;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    }
+    .delivery-option .option-icon { font-size: 1.2rem; display: block; margin-bottom: 2px; }
+
+    /* Endereço fields (hidden by default) */
+    .address-fields { display: none; }
+    .address-fields.visible { display: block; }
+    .address-fields .form-group:first-child { margin-top: 0; }
+
+    /* CEP row */
+    .cep-row {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+    .cep-row .form-group {
+      flex: 1;
+      margin-bottom: 0;
+    }
+    .btn-cep-search {
+      padding: 12px 16px;
+      background: #a68164;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      margin-top: 22px;
+      transition: background 0.2s;
+      touch-action: manipulation;
+    }
+    .btn-cep-search:active { background: #8f6e53; }
+    .btn-cep-search:disabled {
+      background: #e4d2bc;
+      cursor: not-allowed;
+    }
+
+    /* Order summary in checkout */
+    .checkout-summary {
+      background: #fff;
+      border-radius: 12px;
+      padding: 14px;
+      margin-bottom: 20px;
+      border: 1px solid #e4d2bc;
+    }
+    .checkout-summary-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #3d2b1c;
+      margin-bottom: 8px;
+    }
+    .checkout-summary-item {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      padding: 3px 0;
+      color: #5a4a3a;
+    }
+    .checkout-summary-total {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #a68164;
+      border-top: 1px solid #e4d2bc;
+      margin-top: 6px;
+      padding-top: 6px;
+    }
+
+    /* Distance alert */
+    .distance-alert {
+      display: none;
+      padding: 12px 14px;
+      border-radius: 10px;
+      font-size: 0.85rem;
+      margin-bottom: 16px;
+      line-height: 1.4;
+    }
+    .distance-alert.danger {
+      display: block;
+      background: #fef0ee;
+      border: 1px solid #e8c8c0;
+      color: #b33a2a;
+    }
+    .distance-alert.success {
+      display: block;
+      background: #eef6ed;
+      border: 1px solid #c0d8b8;
+      color: #2a7a3a;
+    }
+    .distance-alert .alert-icon { margin-right: 6px; }
+
+    /* Submit button */
+    .checkout-submit-wrap {
+      position: sticky;
+      bottom: 0;
+      background: #fffaea;
+      padding: 14px 20px;
+      border-top: 1px solid #e4d2bc;
+      margin-top: 12px;
+    }
+    .btn-submit {
+      width: 100%;
+      padding: 16px;
+      background: #a68164;
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      font-size: 1.05rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s;
+      touch-action: manipulation;
+    }
+    .btn-submit:active { background: #8f6e53; }
+    .btn-submit:disabled {
+      background: #e4d2bc;
+      cursor: not-allowed;
+    }
+
+    /* Loading spinner */
+    .spinner {
+      display: inline-block;
+      width: 18px;
+      height: 18px;
+      border: 2.5px solid #e4d2bc;
+      border-top-color: #a68164;
+      border-radius: 50%;
+      animation: spin 0.6s linear infinite;
+      vertical-align: middle;
+      margin-right: 6px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
   </style>
 </head>
 <body>
@@ -432,6 +665,103 @@
       </div>
       <button class="btn-checkout" id="btnCheckout" disabled>Seguir para o Checkout</button>
     </div>
+  </div>
+
+  <!-- ===== CHECKOUT SCREEN ===== -->
+  <div class="checkout-screen" id="checkoutScreen">
+    <div class="checkout-header">
+      <button class="checkout-back" id="checkoutBack" aria-label="Voltar">←</button>
+      <h2>Finalizar Pedido</h2>
+    </div>
+
+    <form class="checkout-form" id="checkoutForm" novalidate>
+      <!-- Resumo do pedido -->
+      <div class="checkout-summary" id="checkoutSummary">
+        <div class="checkout-summary-title">📋 Resumo do Pedido</div>
+        <div id="checkoutSummaryItems"></div>
+        <div class="checkout-summary-total">
+          <span>Total</span>
+          <span id="checkoutSummaryTotal">R$ 0,00</span>
+        </div>
+      </div>
+
+      <!-- Nome -->
+      <div class="form-group">
+        <label class="form-label" for="inputNome">Nome completo <span class="required">*</span></label>
+        <input class="form-input" type="text" id="inputNome" placeholder="Seu nome" required>
+      </div>
+
+      <!-- WhatsApp -->
+      <div class="form-group">
+        <label class="form-label" for="inputWhats">WhatsApp <span class="required">*</span></label>
+        <input class="form-input" type="tel" id="inputWhats" placeholder="(11) 99999-9999" required>
+      </div>
+
+      <!-- Tipo de entrega -->
+      <div class="form-group">
+        <label class="form-label">Tipo de entrega <span class="required">*</span></label>
+        <div class="delivery-toggle">
+          <button class="delivery-option active" type="button" data-mode="retirada">
+            <span class="option-icon">🚶</span>Retirada
+          </button>
+          <button class="delivery-option" type="button" data-mode="delivery">
+            <span class="option-icon">🛵</span>Delivery
+          </button>
+        </div>
+      </div>
+
+      <!-- Endereço (Delivery) -->
+      <div class="address-fields" id="addressFields">
+        <!-- CEP -->
+        <div class="form-group">
+          <label class="form-label" for="inputCep">CEP <span class="required">*</span></label>
+          <div class="cep-row">
+            <div class="form-group">
+              <input class="form-input" type="text" id="inputCep" placeholder="99999-999" inputmode="numeric">
+            </div>
+            <button class="btn-cep-search" type="button" id="btnCepSearch">Buscar</button>
+          </div>
+        </div>
+
+        <!-- Rua -->
+        <div class="form-group">
+          <label class="form-label" for="inputRua">Rua <span class="required">*</span></label>
+          <input class="form-input" type="text" id="inputRua" placeholder="Nome da rua">
+        </div>
+
+        <!-- Número -->
+        <div class="form-group">
+          <label class="form-label" for="inputNumero">Número <span class="required">*</span></label>
+          <input class="form-input" type="text" id="inputNumero" placeholder="Nº">
+        </div>
+
+        <!-- Bairro -->
+        <div class="form-group">
+          <label class="form-label" for="inputBairro">Bairro <span class="required">*</span></label>
+          <input class="form-input" type="text" id="inputBairro" placeholder="Bairro">
+        </div>
+
+        <!-- Cidade / Estado (hidden, filled by ViaCEP) -->
+        <input type="hidden" id="inputCidade" value="Suzano">
+        <input type="hidden" id="inputEstado" value="SP">
+
+        <!-- Ponto de referência -->
+        <div class="form-group">
+          <label class="form-label" for="inputRef">Ponto de referência</label>
+          <input class="form-input" type="text" id="inputRef" placeholder="Ex: próximo ao mercado">
+        </div>
+
+        <!-- Alerta de distância -->
+        <div class="distance-alert" id="distanceAlert"></div>
+      </div>
+
+      <!-- Botão finalizar -->
+      <div class="checkout-submit-wrap">
+        <button class="btn-submit" type="submit" id="btnSubmit">
+          ✅ Finalizar Pedido
+        </button>
+      </div>
+    </form>
   </div>
 
   <!-- ===== TOAST ===== -->
@@ -636,14 +966,285 @@
       }, 1800);
     }
 
-    // ===== CHECKOUT PLACEHOLDER =====
-    btnCheckout.addEventListener('click', () => {
-      const total = getTotalPrice();
-      const items = Object.entries(cart).map(([id, qty]) => {
+    // ===== CHECKOUT LOGIC =====
+    // ---- DOM refs ----
+    const checkoutScreen = document.getElementById('checkoutScreen');
+    const checkoutBack = document.getElementById('checkoutBack');
+    const checkoutForm = document.getElementById('checkoutForm');
+    const inputNome = document.getElementById('inputNome');
+    const inputWhats = document.getElementById('inputWhats');
+    const deliveryOptions = document.querySelectorAll('.delivery-option');
+    const addressFields = document.getElementById('addressFields');
+    const inputCep = document.getElementById('inputCep');
+    const btnCepSearch = document.getElementById('btnCepSearch');
+    const inputRua = document.getElementById('inputRua');
+    const inputNumero = document.getElementById('inputNumero');
+    const inputBairro = document.getElementById('inputBairro');
+    const inputCidade = document.getElementById('inputCidade');
+    const inputEstado = document.getElementById('inputEstado');
+    const inputRef = document.getElementById('inputRef');
+    const distanceAlert = document.getElementById('distanceAlert');
+    const btnSubmit = document.getElementById('btnSubmit');
+    const checkoutSummaryItems = document.getElementById('checkoutSummaryItems');
+    const checkoutSummaryTotal = document.getElementById('checkoutSummaryTotal');
+
+    const PONTO_ZERO = { lat: -23.5425, lng: -46.3109 }; // Av. Manoel Casanova, 1200, Suzano-SP (aproximado)
+    let currentDeliveryMode = 'retirada';
+    let distanceVerified = false;
+    let isCheckingDistance = false;
+
+    // ---- Open checkout ----
+    function openCheckout() {
+      const totalItems = getTotalItems();
+      if (totalItems === 0) {
+        showToast('Carrinho vazio! Adicione produtos primeiro.');
+        return;
+      }
+      // Fill summary
+      const entries = Object.entries(cart);
+      checkoutSummaryItems.innerHTML = entries.map(([id, qty]) => {
         const p = PRODUCTS.find(pr => pr.id === parseInt(id));
-        return `${qty}x ${p.name}`;
-      }).join(', ');
-      alert(`🔜 Checkout em breve!\n\nItens: ${items}\nTotal: R$ ${total.toFixed(2).replace('.', ',')}`);
+        if (!p) return '';
+        return `<div class="checkout-summary-item"><span>${qty}x ${p.name}</span><span>R$ ${(p.price * qty).toFixed(2).replace('.', ',')}</span></div>`;
+      }).join('');
+      checkoutSummaryTotal.textContent = `R$ ${getTotalPrice().toFixed(2).replace('.', ',')}`;
+
+      checkoutScreen.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      closeCart();
+    }
+
+    function closeCheckout() {
+      checkoutScreen.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    btnCheckout.addEventListener('click', openCheckout);
+    checkoutBack.addEventListener('click', closeCheckout);
+
+    // ---- Delivery / Retirada Toggle ----
+    deliveryOptions.forEach(btn => {
+      btn.addEventListener('click', () => {
+        deliveryOptions.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentDeliveryMode = btn.dataset.mode;
+
+        if (currentDeliveryMode === 'delivery') {
+          addressFields.classList.add('visible');
+        } else {
+          addressFields.classList.remove('visible');
+          distanceAlert.className = 'distance-alert';
+          distanceVerified = false;
+          validateForm();
+        }
+      });
+    });
+
+    // ---- WhatsApp mask ----
+    inputWhats.addEventListener('input', function(e) {
+      let v = this.value.replace(/\D/g, '').slice(0, 11);
+      if (v.length <= 2) {
+        this.value = v.length ? `(${v}` : '';
+      } else if (v.length <= 7) {
+        this.value = `(${v.slice(0,2)}) ${v.slice(2)}`;
+      } else {
+        this.value = `(${v.slice(0,2)}) ${v.slice(2,7)}-${v.slice(7)}`;
+      }
+    });
+
+    // ---- CEP mask + ViaCEP ----
+    inputCep.addEventListener('input', function(e) {
+      let v = this.value.replace(/\D/g, '').slice(0, 8);
+      this.value = v.length <= 5 ? v : `${v.slice(0,5)}-${v.slice(5)}`;
+    });
+
+    function buscarCep() {
+      const cep = inputCep.value.replace(/\D/g, '');
+      if (cep.length !== 8) {
+        showToast('CEP inválido. Digite 8 dígitos.');
+        return;
+      }
+
+      btnCepSearch.disabled = true;
+      btnCepSearch.textContent = 'Buscando...';
+
+      fetch(`https://viacep.com.br/ws/${cep}/json/`)
+        .then(r => r.json())
+        .then(data => {
+          if (data.erro) {
+            showToast('CEP não encontrado.');
+            return;
+          }
+          inputRua.value = data.logradouro || '';
+          inputBairro.value = data.bairro || '';
+          inputCidade.value = data.localidade || 'Suzano';
+          inputEstado.value = data.uf || 'SP';
+          showToast('Endereço preenchido!');
+          checkDistance();
+        })
+        .catch(() => showToast('Erro ao buscar CEP. Tente novamente.'))
+        .finally(() => {
+          btnCepSearch.disabled = false;
+          btnCepSearch.textContent = 'Buscar';
+        });
+    }
+
+    btnCepSearch.addEventListener('click', buscarCep);
+    inputCep.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') { e.preventDefault(); buscarCep(); }
+    });
+
+    // ---- Nominatim distance check ----
+    function buildFullAddress() {
+      const rua = inputRua.value.trim();
+      const num = inputNumero.value.trim();
+      const bairro = inputBairro.value.trim();
+      const cidade = inputCidade.value || 'Suzano';
+      const estado = inputEstado.value || 'SP';
+      return `${rua}, ${num}, ${bairro}, ${cidade}, ${estado}, Brasil`;
+    }
+
+    function checkDistance() {
+      if (currentDeliveryMode !== 'delivery') return;
+      const address = buildFullAddress();
+      if (!inputRua.value.trim() || !inputNumero.value.trim() || !inputBairro.value.trim()) return;
+
+      isCheckingDistance = true;
+      distanceAlert.className = 'distance-alert';
+      distanceAlert.innerHTML = '<span class="spinner"></span> Verificando distância...';
+
+      const q = encodeURIComponent(address);
+      fetch(`https://nominatim.openstreetmap.org/search?q=${q}&format=json&addressdetails=1&limit=1`, {
+        headers: { 'Accept-Language': 'pt-BR' }
+      })
+        .then(r => r.json())
+        .then(data => {
+          if (!data || data.length === 0) {
+            distanceAlert.className = 'distance-alert danger';
+            distanceAlert.innerHTML = '<span class="alert-icon">⚠️</span> Não foi possível localizar o endereço. Verifique os dados.';
+            distanceVerified = false;
+            validateForm();
+            return;
+          }
+
+          const loc = data[0];
+          const lat = parseFloat(loc.lat);
+          const lon = parseFloat(loc.lon);
+
+          const dist = haversine(PONTO_ZERO.lat, PONTO_ZERO.lng, lat, lon);
+          const distKm = Math.round(dist * 10) / 10;
+
+          if (distKm <= 3) {
+            distanceAlert.className = 'distance-alert success';
+            distanceAlert.innerHTML = `<span class="alert-icon">✅</span> Endereço dentro da área de entrega (${distKm} km).`;
+            distanceVerified = true;
+          } else {
+            distanceAlert.className = 'distance-alert danger';
+            distanceAlert.innerHTML = `<span class="alert-icon">😔</span> Infelizmente, este endereço está fora da nossa área de entrega (máximo 3 km — ${distKm} km do ponto de retirada). Por favor, altere para <strong>Retirada no local</strong>.`;
+            distanceVerified = false;
+          }
+          validateForm();
+        })
+        .catch(() => {
+          distanceAlert.className = 'distance-alert danger';
+          distanceAlert.innerHTML = '<span class="alert-icon">⚠️</span> Erro ao verificar distância. Tente novamente.';
+          distanceVerified = false;
+          validateForm();
+        })
+        .finally(() => { isCheckingDistance = false; });
+    }
+
+    // Haversine formula
+    function haversine(lat1, lon1, lat2, lon2) {
+      const R = 6371; // km
+      const dLat = (lat2 - lat1) * Math.PI / 180;
+      const dLon = (lon2 - lon1) * Math.PI / 180;
+      const a = Math.sin(dLat/2) ** 2 +
+                Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+                Math.sin(dLon/2) ** 2;
+      return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+    }
+
+    // Debounce for address fields
+    let distanceTimeout = null;
+    function scheduleDistanceCheck() {
+      if (distanceTimeout) clearTimeout(distanceTimeout);
+      distanceTimeout = setTimeout(checkDistance, 1200);
+    }
+
+    [inputRua, inputNumero, inputBairro].forEach(field => {
+      field.addEventListener('input', scheduleDistanceCheck);
+      field.addEventListener('change', checkDistance);
+    });
+
+    // ---- Form validation ----
+    function validateForm() {
+      const nome = inputNome.value.trim();
+      const whats = inputWhats.value.replace(/\D/g, '');
+      const nomeOk = nome.length >= 3;
+      const whatsOk = whats.length >= 10;
+
+      if (currentDeliveryMode === 'delivery') {
+        const ruaOk = inputRua.value.trim().length > 0;
+        const numOk = inputNumero.value.trim().length > 0;
+        const bairroOk = inputBairro.value.trim().length > 0;
+        const allAddrOk = ruaOk && numOk && bairroOk;
+        const canSubmit = nomeOk && whatsOk && allAddrOk && distanceVerified;
+
+        [inputRua, inputNumero, inputBairro].forEach(f => {
+          f.classList.toggle('error', f.value.trim() === '' && f.parentElement.style.display !== 'none');
+        });
+
+        btnSubmit.disabled = !canSubmit;
+        return canSubmit;
+      }
+
+      // Retirada
+      btnSubmit.disabled = !(nomeOk && whatsOk);
+      return nomeOk && whatsOk;
+    }
+
+    [inputNome, inputWhats].forEach(f => {
+      f.addEventListener('input', validateForm);
+    });
+
+    // ---- Submit: WhatsApp link ----
+    checkoutForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      if (btnSubmit.disabled) return;
+
+      const nome = inputNome.value.trim();
+      const whats = inputWhats.value.replace(/\D/g, '');
+      const entrega = currentDeliveryMode === 'delivery' ? '🛵 Delivery' : '🚶 Retirada no local';
+
+      // Build items summary
+      const entries = Object.entries(cart);
+      let itensTexto = entries.map(([id, qty]) => {
+        const p = PRODUCTS.find(pr => pr.id === parseInt(id));
+        return `${qty}x ${p.name} — R$ ${(p.price * qty).toFixed(2).replace('.', ',')}`;
+      }).join('\n');
+
+      let enderecoTexto = '';
+      if (currentDeliveryMode === 'delivery') {
+        const rua = inputRua.value.trim();
+        const num = inputNumero.value.trim();
+        const bairro = inputBairro.value.trim();
+        const ref = inputRef.value.trim();
+        enderecoTexto = `\n📍 *Endereço:* ${rua}, ${num} - ${bairro}, Suzano-SP`;
+        if (ref) enderecoTexto += `\n📍 *Referência:* ${ref}`;
+      }
+
+      const msg = `🍫 *Novo Pedido - GS Brownies*\n\n👤 *Nome:* ${nome}\n📱 *WhatsApp:* ${whats}\n🚚 *Tipo:* ${entrega}${enderecoTexto}\n\n📦 *Itens:*\n${itensTexto}\n\n💰 *Total: R$ ${getTotalPrice().toFixed(2).replace('.', ',')}*\n\n✅ _Pedido via site_`;
+
+      const url = `https://wa.me/55${whats}?text=${encodeURIComponent(msg)}`;
+      window.open(url, '_blank');
+    });
+
+    // ---- Expose validateForm for input changes ----
+    document.addEventListener('input', function(e) {
+      if (e.target.closest('.address-fields') || e.target.closest('.checkout-form')) {
+        validateForm();
+      }
     });
 
     // ===== INIT =====
