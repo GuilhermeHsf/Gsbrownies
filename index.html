@@ -783,17 +783,13 @@
   <script>
     // ===== PRODUTOS =====
     const PRODUCTS = [
-      { id: 1, name: 'Brownie de Brigadeiro',    price: 10.00, emoji: '🤎' },
-      { id: 2, name: 'Brownie de Ninho',         price: 10.00, emoji: '🥛' },
-      { id: 3, name: 'Brownie de Nutella c/ Ninho', price: 13.00, emoji: '🍫' },
-      { id: 4, name: 'Brownie de Mousse de Maracujá', price: 12.50, emoji: '💛' },
-      { id: 5, name: 'Cookie de Nutella',        price: 12.00, emoji: '🍪' },
-      { id: 6, name: 'Cookie de Kinder',         price: 12.00, emoji: '🍫' },
+      { id: 1, name: 'Brownie de Brigadeiro',    price: 10.00, img: 'assets/prod-brigadeiro.png' },
+      { id: 2, name: 'Brownie de Ninho',         price: 10.00, img: 'assets/prod-ninho.png' },
+      { id: 3, name: 'Brownie de Nutella c/ Ninho', price: 13.00, img: 'assets/prod-nutella-ninho.png' },
+      { id: 4, name: 'Brownie de Mousse de Maracujá', price: 12.50, img: 'assets/prod-maracuja.png' },
+      { id: 5, name: 'Cookie de Nutella',        price: 12.00, img: 'assets/prod-cookie-nutella.png' },
+      { id: 6, name: 'Cookie de Kinder',         price: 12.00, img: 'assets/prod-cookie-kinder.png' },
     ];
-
-    const EMOJI_PLACEHOLDERS = {
-      1: '🤎', 2: '🥛', 3: '🍫', 4: '💛', 5: '🍪', 6: '🍫'
-    };
 
     // ===== STATE =====
     let cart = {}; // { [id]: quantity }
@@ -817,7 +813,7 @@
     function renderMenu() {
       menuGrid.innerHTML = PRODUCTS.map(p => `
         <div class="product-card">
-          <div class="product-img">${p.emoji}</div>
+          <img class="product-img" src="${p.img}" alt="${p.name}" loading="lazy">
           <div class="product-info">
             <div class="product-name">${p.name}</div>
             <div class="product-price">R$ ${p.price.toFixed(2).replace('.', ',')}</div>
@@ -906,7 +902,7 @@
         const lineTotal = product.price * qty;
         return `
           <div class="cart-item" data-id="${id}">
-            <div class="cart-item-img">${product.emoji}</div>
+            <img class="cart-item-img" src="${product.img}" alt="${product.name}" loading="lazy">
             <div class="cart-item-info">
               <div class="cart-item-name">${product.name}</div>
               <div class="cart-item-unit">R$ ${product.price.toFixed(2).replace('.', ',')} un.</div>
