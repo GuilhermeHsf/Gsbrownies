@@ -9,4 +9,4 @@
  *   const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/ABCDE12345/exec';
  */
 
-const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyRao0IqDHf0RqQ2Pm9ueLbCCrbmwNAzV6qGTqDrmqYrSW5lWkOm0FKJDH7hT0s1eW-/exec';
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzximKet5IRxuBUMVTJwETPUFUzqZ5ZnNisHOMMkA5OpEYv06bkjF9t__AzC3Io27uN/exec';
