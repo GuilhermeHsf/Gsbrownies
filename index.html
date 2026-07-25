@@ -625,6 +625,297 @@
       margin-right: 6px;
     }
     @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ===== PIX SCREEN ===== */
+    .pix-screen {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 60;
+      background: #fffaea;
+      overflow-y: auto;
+    }
+    .pix-screen.open { display: block; }
+    .pix-container {
+      padding: 24px 20px 100px;
+      max-width: 420px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .pix-icon {
+      font-size: 2.2rem;
+      margin-bottom: 4px;
+    }
+    .pix-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #3d2b1c;
+      margin-bottom: 4px;
+    }
+    .pix-subtitle {
+      font-size: 0.85rem;
+      color: #8a6a4e;
+      margin-bottom: 20px;
+    }
+
+    /* QR Code placeholder */
+    .pix-qr-wrap {
+      background: #fff;
+      border: 2px solid #e4d2bc;
+      border-radius: 16px;
+      padding: 16px;
+      display: inline-block;
+      margin-bottom: 16px;
+    }
+    .pix-qr-placeholder {
+      width: 200px;
+      height: 200px;
+      background: #f5ece3;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      color: #b8a088;
+      gap: 6px;
+    }
+    .pix-qr-placeholder .qr-icon {
+      font-size: 3rem;
+    }
+
+    /* Pix key */
+    .pix-key-section {
+      background: #fff;
+      border: 1px solid #e4d2bc;
+      border-radius: 12px;
+      padding: 14px;
+      margin-bottom: 20px;
+      text-align: left;
+    }
+    .pix-key-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #b8a088;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 4px;
+    }
+    .pix-key-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .pix-key-value {
+      flex: 1;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #3d2b1c;
+      word-break: break-all;
+      font-family: 'Courier New', monospace;
+    }
+    .btn-copy {
+      padding: 8px 16px;
+      background: #a68164;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.2s;
+      touch-action: manipulation;
+    }
+    .btn-copy:active { background: #8f6e53; }
+    .btn-copy.copied {
+      background: #2a7a3a;
+    }
+
+    /* Instructions */
+    .pix-steps {
+      text-align: left;
+      background: #fff;
+      border-radius: 12px;
+      padding: 14px 16px;
+      border: 1px solid #e4d2bc;
+      margin-bottom: 20px;
+    }
+    .pix-steps-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #3d2b1c;
+      margin-bottom: 10px;
+    }
+    .pix-step {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      padding: 4px 0;
+      font-size: 0.85rem;
+      color: #5a4a3a;
+    }
+    .pix-step-num {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: #a68164;
+      color: #fff;
+      font-size: 0.7rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .pix-step-text { line-height: 1.4; }
+
+    /* Pix confirm buttons */
+    .pix-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .btn-pix-confirm {
+      width: 100%;
+      padding: 16px;
+      background: #a68164;
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s;
+      touch-action: manipulation;
+    }
+    .btn-pix-confirm:active { background: #8f6e53; }
+    .btn-pix-confirm:disabled {
+      background: #e4d2bc;
+      cursor: not-allowed;
+    }
+    .btn-pix-back {
+      background: none;
+      border: none;
+      color: #b8a088;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      padding: 8px;
+      touch-action: manipulation;
+    }
+    .btn-pix-back:active { color: #8a6a4e; }
+
+    /* ===== SUCCESS SCREEN ===== */
+    .success-screen {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 70;
+      background: #fffaea;
+      overflow-y: auto;
+    }
+    .success-screen.open { display: block; }
+    .success-container {
+      padding: 60px 20px 40px;
+      max-width: 420px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .success-check {
+      font-size: 4rem;
+      margin-bottom: 12px;
+    }
+    .success-title {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: #a68164;
+      margin-bottom: 6px;
+    }
+    .success-subtitle {
+      font-size: 0.9rem;
+      color: #8a6a4e;
+      margin-bottom: 24px;
+      line-height: 1.4;
+    }
+    .success-details {
+      background: #fff;
+      border: 1px solid #e4d2bc;
+      border-radius: 12px;
+      padding: 16px;
+      text-align: left;
+      margin-bottom: 20px;
+    }
+    .success-detail-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      padding: 4px 0;
+    }
+    .success-detail-label { color: #8a6a4e; }
+    .success-detail-value { font-weight: 600; color: #3d2b1c; text-align: right; }
+    .btn-success-whatsapp {
+      width: 100%;
+      padding: 16px;
+      background: #25D366;
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s;
+      margin-bottom: 10px;
+      touch-action: manipulation;
+    }
+    .btn-success-whatsapp:active { background: #1da851; }
+    .btn-success-home {
+      width: 100%;
+      padding: 14px;
+      background: #fff;
+      color: #a68164;
+      border: 1.5px solid #a68164;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+      touch-action: manipulation;
+    }
+    .btn-success-home:active { background: #f5ece3; }
+
+    /* Pix processing overlay */
+    .pix-processing {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 80;
+      background: rgba(255,250,234,0.95);
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    .pix-processing.open { display: flex; }
+    .pix-processing .spinner-big {
+      width: 48px;
+      height: 48px;
+      border: 4px solid #e4d2bc;
+      border-top-color: #a68164;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      margin: 0 auto 16px;
+    }
+    .pix-processing-text {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #3d2b1c;
+    }
+    .pix-processing-sub {
+      font-size: 0.85rem;
+      color: #8a6a4e;
+      margin-top: 4px;
+    }
   </style>
 </head>
 <body>
@@ -762,6 +1053,106 @@
         </button>
       </div>
     </form>
+  </div>
+
+  <!-- ===== PIX SCREEN ===== -->
+  <div class="pix-screen" id="pixScreen">
+    <div class="pix-container">
+      <div class="pix-icon">💳</div>
+      <div class="pix-title">Pagamento via Pix</div>
+      <div class="pix-subtitle">Escaneie o QR Code ou copie a chave para pagar</div>
+
+      <!-- QR Code placeholder -->
+      <div class="pix-qr-wrap">
+        <div class="pix-qr-placeholder" id="pixQrPlaceholder">
+          <span class="qr-icon">📱</span>
+          <span>QR Code Pix</span>
+          <span style="font-size:0.65rem;color:#d4c4b4;">(imagem real em breve)</span>
+        </div>
+      </div>
+
+      <!-- Pix key -->
+      <div class="pix-key-section">
+        <div class="pix-key-label">Chave Pix Aleatória</div>
+        <div class="pix-key-row">
+          <span class="pix-key-value" id="pixKeyDisplay">gsbrownies@pix.com.br</span>
+          <button class="btn-copy" id="btnCopyPix">📋 Copiar</button>
+        </div>
+      </div>
+
+      <!-- Steps -->
+      <div class="pix-steps">
+        <div class="pix-steps-title">📌 Como pagar</div>
+        <div class="pix-step">
+          <span class="pix-step-num">1</span>
+          <span class="pix-step-text">Abra o app do seu banco</span>
+        </div>
+        <div class="pix-step">
+          <span class="pix-step-num">2</span>
+          <span class="pix-step-text">Escolha a opção <strong>Pix</strong> → <strong>QR Code</strong> ou <strong>Copia e Cola</strong></span>
+        </div>
+        <div class="pix-step">
+          <span class="pix-step-num">3</span>
+          <span class="pix-step-text">Escaneie o QR Code acima, ou cole a chave copiada</span>
+        </div>
+        <div class="pix-step">
+          <span class="pix-step-num">4</span>
+          <span class="pix-step-text">Após pagar, clique em <strong>"Já paguei — Confirmar Pedido"</strong></span>
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <div class="pix-actions">
+        <button class="btn-pix-confirm" id="btnConfirmOrder" disabled>
+          ✅ Já paguei — Confirmar Pedido
+        </button>
+        <button class="btn-pix-back" id="btnPixBack">← Voltar ao checkout</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== PROCESSING OVERLAY ===== -->
+  <div class="pix-processing" id="pixProcessing">
+    <div>
+      <div class="spinner-big"></div>
+      <div class="pix-processing-text">Processando seu pedido...</div>
+      <div class="pix-processing-sub">Aguarde um momento</div>
+    </div>
+  </div>
+
+  <!-- ===== SUCCESS SCREEN ===== -->
+  <div class="success-screen" id="successScreen">
+    <div class="success-container">
+      <div class="success-check">✅</div>
+      <div class="success-title">Pedido Confirmado!</div>
+      <div class="success-subtitle">Recebemos seu pedido e entraremos em contato em breve pelo WhatsApp para confirmar.</div>
+
+      <div class="success-details" id="successDetails">
+        <div class="success-detail-row">
+          <span class="success-detail-label">Itens</span>
+          <span class="success-detail-value" id="successItems">—</span>
+        </div>
+        <div class="success-detail-row">
+          <span class="success-detail-label">Total</span>
+          <span class="success-detail-value" id="successTotal">R$ 0,00</span>
+        </div>
+        <div class="success-detail-row">
+          <span class="success-detail-label">Pagamento</span>
+          <span class="success-detail-value">Pix</span>
+        </div>
+        <div class="success-detail-row">
+          <span class="success-detail-label">Entrega</span>
+          <span class="success-detail-value" id="successDelivery">—</span>
+        </div>
+      </div>
+
+      <button class="btn-success-whatsapp" id="btnSuccessWhats">
+        💬 Enviar Resumo no WhatsApp
+      </button>
+      <button class="btn-success-home" id="btnSuccessHome">
+        ← Voltar ao Cardápio
+      </button>
+    </div>
   </div>
 
   <!-- ===== TOAST ===== -->
@@ -1204,36 +1595,170 @@
       f.addEventListener('input', validateForm);
     });
 
-    // ---- Submit: WhatsApp link ----
+    // ---- Submit: mostra tela Pix ----
+    let lastOrderData = null; // guarda dados do pedido pra tela de sucesso
+
     checkoutForm.addEventListener('submit', function(e) {
       e.preventDefault();
       if (btnSubmit.disabled) return;
 
-      const nome = inputNome.value.trim();
-      const whats = inputWhats.value.replace(/\D/g, '');
-      const entrega = currentDeliveryMode === 'delivery' ? '🛵 Delivery' : '🚶 Retirada no local';
+      // Guarda dados do pedido
+      lastOrderData = {
+        nome: inputNome.value.trim(),
+        whats: inputWhats.value.replace(/\D/g, ''),
+        entrega: currentDeliveryMode === 'delivery' ? '🛵 Delivery' : '🚶 Retirada no local'
+      };
 
-      // Build items summary
+      // Fecha checkout, abre Pix
+      closeCheckout();
+      openPixScreen();
+    });
+
+    // ===== PIX SCREEN LOGIC =====
+    const pixScreen = document.getElementById('pixScreen');
+    const pixProcessing = document.getElementById('pixProcessing');
+    const successScreen = document.getElementById('successScreen');
+    const pixKeyDisplay = document.getElementById('pixKeyDisplay');
+    const btnCopyPix = document.getElementById('btnCopyPix');
+    const btnConfirmOrder = document.getElementById('btnConfirmOrder');
+    const btnPixBack = document.getElementById('btnPixBack');
+    const btnSuccessWhats = document.getElementById('btnSuccessWhats');
+    const btnSuccessHome = document.getElementById('btnSuccessHome');
+    const successItems = document.getElementById('successItems');
+    const successTotal = document.getElementById('successTotal');
+    const successDelivery = document.getElementById('successDelivery');
+
+    let pixCopied = false;
+
+    // Chave Pix aleatória (não telefone)
+    const PIX_KEY = 'gsbrownies@pix.com.br';
+    const PIX_PAYLOAD = '00020126360014br.gov.bcb.pix0114gsbrownies@pix.com.br520400005303986540610.005802BR5925GS Brownies Doces Artes6009Sao Paulo6229052516GSBROWNIES1234567896304ABCD';
+
+    function openPixScreen() {
+      pixCopied = false;
+      btnCopyPix.textContent = '📋 Copiar';
+      btnCopyPix.className = 'btn-copy';
+      btnConfirmOrder.disabled = true;
+      pixKeyDisplay.textContent = PIX_KEY;
+
+      // Preenche resumo do sucesso com dados atuais
       const entries = Object.entries(cart);
-      let itensTexto = entries.map(([id, qty]) => {
+      const itemText = entries.map(([id, qty]) => {
         const p = PRODUCTS.find(pr => pr.id === parseInt(id));
-        return `${qty}x ${p.name} — R$ ${(p.price * qty).toFixed(2).replace('.', ',')}`;
-      }).join('\n');
+        return `${qty}x ${p.name}`;
+      }).join(', ');
+      successItems.textContent = itemText || '—';
+      successTotal.textContent = `R$ ${getTotalPrice().toFixed(2).replace('.', ',')}`;
+      successDelivery.textContent = lastOrderData ? lastOrderData.entrega : '—';
 
-      let enderecoTexto = '';
-      if (currentDeliveryMode === 'delivery') {
-        const rua = inputRua.value.trim();
-        const num = inputNumero.value.trim();
-        const bairro = inputBairro.value.trim();
-        const ref = inputRef.value.trim();
-        enderecoTexto = `\n📍 *Endereço:* ${rua}, ${num} - ${bairro}, Suzano-SP`;
-        if (ref) enderecoTexto += `\n📍 *Referência:* ${ref}`;
+      pixScreen.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closePixScreen() {
+      pixScreen.classList.remove('open');
+      if (!successScreen.classList.contains('open')) {
+        document.body.style.overflow = '';
       }
+    }
 
-      const msg = `🍫 *Novo Pedido - GS Brownies*\n\n👤 *Nome:* ${nome}\n📱 *WhatsApp:* ${whats}\n🚚 *Tipo:* ${entrega}${enderecoTexto}\n\n📦 *Itens:*\n${itensTexto}\n\n💰 *Total: R$ ${getTotalPrice().toFixed(2).replace('.', ',')}*\n\n✅ _Pedido via site_`;
+    // ---- Copy Pix key ----
+    btnCopyPix.addEventListener('click', async function() {
+      try {
+        await navigator.clipboard.writeText(PIX_PAYLOAD);
+        this.textContent = '✅ Copiado!';
+        this.classList.add('copied');
+        pixCopied = true;
+        btnConfirmOrder.disabled = false;
+        showToast('Código Pix copiado!');
+      } catch {
+        // Fallback: select text
+        const range = document.createRange();
+        range.selectNodeContents(pixKeyDisplay);
+        const sel = window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(range);
+        document.execCommand('copy');
+        sel.removeAllRanges();
+        this.textContent = '✅ Copiado!';
+        this.classList.add('copied');
+        pixCopied = true;
+        btnConfirmOrder.disabled = false;
+        showToast('Código Pix copiado!');
+      }
+    });
+
+    // ---- Confirm order ----
+    btnConfirmOrder.addEventListener('click', function() {
+      if (this.disabled) return;
+
+      // Mostra processing
+      pixProcessing.classList.add('open');
+      btnConfirmOrder.disabled = true;
+
+      // Simula salvamento (será substituído pela integração Sheets no plano 04)
+      setTimeout(() => {
+        pixProcessing.classList.remove('open');
+
+        // Limpa carrinho
+        cart = {};
+        updateCartUI();
+        sessionStorage.removeItem('gsbrownie_cart');
+
+        // Fecha Pix, abre sucesso
+        closePixScreen();
+        openSuccessScreen();
+      }, 1500);
+    });
+
+    // ---- Pix back to checkout ----
+    btnPixBack.addEventListener('click', function() {
+      closePixScreen();
+      openCheckout();
+    });
+
+    // ===== SUCCESS SCREEN LOGIC =====
+    function openSuccessScreen() {
+      successScreen.classList.add('open');
+      document.body.style.overflow = 'hidden';
+
+      // Scroll to top
+      successScreen.scrollTop = 0;
+    }
+
+    function closeSuccessScreen() {
+      successScreen.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    // ---- WhatsApp share ----
+    btnSuccessWhats.addEventListener('click', function() {
+      const nome = lastOrderData?.nome || 'Cliente';
+      const whats = lastOrderData?.whats || '';
+      const entrega = lastOrderData?.entrega || '—';
+
+      const itensText = successItems.textContent;
+
+      const msg = `🍫 *Pedido Confirmado - GS Brownies*\n\n👤 *Nome:* ${nome}\n📱 *WhatsApp:* ${whats}\n🚚 *Tipo:* ${entrega}\n\n📦 *Itens:* ${itensText}\n💰 *Total:* ${successTotal.textContent}\n✅ _Obrigado pelo pedido!_`;
 
       const url = `https://wa.me/55${whats}?text=${encodeURIComponent(msg)}`;
       window.open(url, '_blank');
+    });
+
+    // ---- Back to menu ----
+    btnSuccessHome.addEventListener('click', function() {
+      closeSuccessScreen();
+      // Reseta formulário
+      checkoutForm.reset();
+      currentDeliveryMode = 'retirada';
+      deliveryOptions.forEach(b => b.classList.remove('active'));
+      document.querySelector('[data-mode="retirada"]').classList.add('active');
+      addressFields.classList.remove('visible');
+      distanceAlert.className = 'distance-alert';
+      distanceVerified = false;
+      validateForm();
+      // Scroll to top
+      document.querySelector('.header').scrollIntoView({ behavior: 'smooth' });
     });
 
     // ---- Expose validateForm for input changes ----
