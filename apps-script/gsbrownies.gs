@@ -27,7 +27,7 @@
 // ============================================================
 // CONFIGURAÇÃO
 // ============================================================
-const SHEET_ID = 'COLE_O_ID_AQUI';      // ← COLE O ID DA PLANILHA AQUI
+const SHEET_ID = '1KGHTU5axnRHhJPReQR9h5aZwGWOeDWTzqNpFeEH3DmM';      // ← COLE O ID DA PLANILHA AQUI
 const SHEET_NAME = 'Vendas';             // Nome da aba (deve existir na planilha)
 const STATUS_PENDENTE = 'Pendente';      // Status inicial do pedido
 
