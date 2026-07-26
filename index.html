@@ -658,7 +658,7 @@
       margin-bottom: 20px;
     }
 
-    /* QR Code placeholder */
+    /* QR Code */
     .pix-qr-wrap {
       background: #fff;
       border: 2px solid #e4d2bc;
@@ -667,21 +667,12 @@
       display: inline-block;
       margin-bottom: 16px;
     }
-    .pix-qr-placeholder {
+    .pix-qr-img {
       width: 200px;
       height: 200px;
-      background: #f5ece3;
+      object-fit: contain;
       border-radius: 8px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.8rem;
-      color: #b8a088;
-      gap: 6px;
-    }
-    .pix-qr-placeholder .qr-icon {
-      font-size: 3rem;
+      display: block;
     }
 
     /* Pix key */
@@ -1062,13 +1053,9 @@
       <div class="pix-title">Pagamento via Pix</div>
       <div class="pix-subtitle">Escaneie o QR Code ou copie a chave para pagar</div>
 
-      <!-- QR Code placeholder -->
+      <!-- QR Code real -->
       <div class="pix-qr-wrap">
-        <div class="pix-qr-placeholder" id="pixQrPlaceholder">
-          <span class="qr-icon">📱</span>
-          <span>QR Code Pix</span>
-          <span style="font-size:0.65rem;color:#d4c4b4;">(imagem real em breve)</span>
-        </div>
+        <img src="assets/qr-code-pix.jpeg" alt="QR Code Pix GS Brownies" class="pix-qr-img" id="pixQrImg">
       </div>
 
       <!-- Pix key -->

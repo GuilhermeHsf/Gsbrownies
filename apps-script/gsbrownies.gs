@@ -41,7 +41,7 @@ const STATUS_PENDENTE = 'Pendente';      // Status inicial do pedido
 //   3. Preencha abaixo:
 //
 const CALLMEBOT_API_KEY = '';           // ← Sua API Key do CallMeBot
-const SEU_NUMERO = '5511999999999';     // ← Seu WhatsApp com DDD (5511...)
+const SEU_NUMERO = '5511976123738';     // ← Seu WhatsApp com DDD (5511...)
 
 //
 // OPÇÃO B: E-mail (sempre funciona, sem configuração extra)
